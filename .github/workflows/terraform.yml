@@ -1,0 +1,30 @@
+name: terraform-check
+
+on:
+  push:
+    paths:
+      - 'terraform/**'
+      - '.github/workflows/terraform.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform/docker-nginx
+
+    steps:
+      - name: コードを取得
+        uses: actions/checkout@v4
+
+      - name: Terraform を準備
+        uses: hashicorp/setup-terraform@v3
+
+      - name: 書式チェック
+        run: terraform fmt -check
+
+      - name: 初期化
+        run: terraform init -backend=false
+
+      - name: 文法チェック
+        run: terraform validate

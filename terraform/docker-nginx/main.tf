@@ -19,6 +19,6 @@ resource "docker_container" "web" {
 
   ports {
     internal = 80
-    external = 8091   # ← 空いているポートに変更
+    external = 8091 # ← 空いているポートに変更
   }
 }
