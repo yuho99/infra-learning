@@ -10,3 +10,10 @@
 - 既存コンテナとのポート競合を docker ps で事前に確認し、空きポートを使用
 - ポート番号の変更だけで「must be replaced（作り直し）」になることを plan で確認
   → 本番では plan による事前確認が重要だと理解
+
+
+### GitHub Actions × Terraform
+- push 時に terraform fmt -check / validate を自動実行するワークフローを作成
+- fmt -check で終了ステータス 3（書式不備）を検出 → -diff で差分確認 → terraform fmt で整形
+- push 時に "without workflow scope" で拒否 → トークンに Workflows 権限を追加して解決
+- Actions が成功（緑）になることを確認
