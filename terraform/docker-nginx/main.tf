@@ -10,7 +10,7 @@ terraform {
 provider "docker" {}
 
 resource "docker_image" "nginx" {
-  name = "nginx:alpine"   # ← latest から alpine に変更
+  name = "nginx:alpine" # ← latest から alpine に変更
 }
 
 resource "docker_container" "web" {
