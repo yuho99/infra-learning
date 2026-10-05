@@ -28,3 +28,14 @@ jobs:
 
       - name: 文法チェック
         run: terraform validate
+
+  
+  trivy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: nginx イメージの脆弱性スキャン
+        run: |
+          docker run --rm aquasec/trivy:0.69.3 image \
+            --severity HIGH,CRITICAL \
+            --exit-code 0 \
+            nginx:alpine
